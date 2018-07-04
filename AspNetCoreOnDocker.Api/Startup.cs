@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using AspNetCoreOnDocker.Api.Middlewares;
 
 namespace AspNetCoreOnDocker.Api
 {
@@ -39,6 +40,8 @@ namespace AspNetCoreOnDocker.Api
             {
                 app.UseHsts();
             }
+
+            app.UseCorrelationContext();
 
             //app.UseHttpsRedirection();
             app.UseMvc();
