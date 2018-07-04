@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace AspNetCoreOnDocker.Api.Controllers
 {
@@ -10,6 +11,13 @@ namespace AspNetCoreOnDocker.Api.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private ILogger<ValuesController> _logger;
+
+        public ValuesController(ILogger<ValuesController> logger)
+        {
+            _logger = logger;
+        }
+
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
@@ -21,6 +29,10 @@ namespace AspNetCoreOnDocker.Api.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
+            _logger.LogDebug("Getting value. Id: {id}", id);
+            if(id>2){
+                _logger.LogWarning("An error occured while getting value. Id: {id}", id);
+            }
             return "value";
         }
 
