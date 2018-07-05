@@ -8,7 +8,7 @@ namespace AspNetCoreOnDocker.MongodDb
 {
     public class ValuesDal
     {
-        private const string CONNECTION_STRING = "mongodb://localhost:27017";
+        private const string CONNECTION_STRING = "mongodb://mongo:27017";
         private const string DATABASE_NAME = "AspNetCoreOnDocker";
         private const string COLLECTION_NAME = "Values";
         private readonly IMongoCollection<ValueModel> _valuesCollection;
