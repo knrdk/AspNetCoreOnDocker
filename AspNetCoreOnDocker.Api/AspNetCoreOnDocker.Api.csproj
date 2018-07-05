@@ -24,4 +24,8 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.1.0-preview1-final" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AspNetCoreOnDocker.MongoDb\AspNetCoreOnDocker.MongoDb.csproj" />
+  </ItemGroup>
+
 </Project>
