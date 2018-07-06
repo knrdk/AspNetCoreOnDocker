@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCoreOnDocker.MongodDb;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -12,17 +13,19 @@ namespace AspNetCoreOnDocker.Api.Controllers
     public class ValuesController : ControllerBase
     {
         private ILogger<ValuesController> _logger;
+        private ValuesDal valuesDal;
 
         public ValuesController(ILogger<ValuesController> logger)
         {
             _logger = logger;
+            valuesDal = new ValuesDal();
         }
 
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return valuesDal.GetAllValues();
         }
 
         // GET api/values/5
@@ -40,6 +43,7 @@ namespace AspNetCoreOnDocker.Api.Controllers
         [HttpPost]
         public void Post([FromBody] string value)
         {
+            valuesDal.AddValue(value);
         }
 
         // PUT api/values/5
